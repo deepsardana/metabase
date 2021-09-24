@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 EXPOSE 3000
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install default-jre -y
