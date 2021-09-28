@@ -1,0 +1,41 @@
+Steps to create deploymet yaml file
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metabase
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      erp: metabase
+  template:
+    metadata:
+      labels:
+        erp: metabase
+    spec:
+      containers:
+      - name: metabase
+        image: deep0507/metabase:latest
+
+Steps to create service file 
+
+In my case I used nodeport to expose service 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: metabase
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    erp: metabase
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30004
+
+
+
